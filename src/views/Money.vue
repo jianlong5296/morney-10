@@ -9,6 +9,10 @@
             />
         </div>
         <Tags @update:value="record.tags = $event"/>
+        <div class="topicon">
+            <Icon name="octopus"/>
+            <span class="topfont">&nbsp; 章鱼记账</span>
+        </div>
     </Layout>
 </template>
 
@@ -72,5 +76,20 @@
 
     .notes {
         padding: 12px 0;
+    }
+    .topicon{
+        flex-grow: 1;
+        background: white;
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: bolder;
+        border-radius: 10px;
+        margin: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > .topfont{
+            color: black;
+        }
     }
 </style>
