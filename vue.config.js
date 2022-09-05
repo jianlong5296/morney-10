@@ -1,8 +1,9 @@
 const path = require('path')
 
 module.exports = {
+  //生产环境使用'/morney-9/'，开发环境使用'/'
     publicPath: process.env.NODE_ENV === 'production'
-        ? '/morney-1-website/'
+        ? '/morney-9-website/'
         : '/',
   lintOnSave: false,
   chainWebpack:config=>{
