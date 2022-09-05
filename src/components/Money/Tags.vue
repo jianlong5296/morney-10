@@ -13,8 +13,7 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-    import {Component, Prop} from 'vue-property-decorator';
+    import {Component} from 'vue-property-decorator';
     import TagHelper from '@/mixins/TagHelper';
     import {mixins} from 'vue-class-component';
 
@@ -49,7 +48,8 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column-reverse;
-
+        border-radius: 10px;
+        margin: 6px;
         > .current {
             display: flex;
             flex-wrap: wrap;
@@ -66,7 +66,7 @@
                 margin-top: 4px;
 
                 &.selected {
-                    background: darken($bg, 30%);
+                    background: #E63629;
                     color: white;
                 }
             }
@@ -74,7 +74,6 @@
 
         > .new {
             padding-top: 16px;
-
             button {
                 background: transparent;
                 border: none;
