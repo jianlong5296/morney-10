@@ -83,7 +83,6 @@ const store = new Vuex.Store({
             const id = createId().toString();
             state.tagList.push({id, name: name});
             store.commit('saveTags');
-            window.alert('添加成功');
         },
         saveTags(state) {
             window.localStorage.setItem('tagList',

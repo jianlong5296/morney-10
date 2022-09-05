@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
     import Button from '@/components/Button.vue';
     import TagHelper from '@/mixins/TagHelper';
@@ -69,7 +68,7 @@
     }
 
     .createTag {
-        background: #767676;
+        background: #E63629;
         color: white;
         border-radius: 4px;
         border: none;
