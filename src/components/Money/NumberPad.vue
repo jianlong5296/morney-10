@@ -5,11 +5,11 @@
             <button @click="inputContent">1</button>
             <button @click="inputContent">2</button>
             <button @click="inputContent">3</button>
-            <button @click="remove">删除</button>
+            <button @click="remove">Back</button>
             <button @click="inputContent">4</button>
             <button @click="inputContent">5</button>
             <button @click="inputContent">6</button>
-            <button @click="clear">清空</button>
+            <button @click="clear">C</button>
             <button @click="inputContent">7</button>
             <button @click="inputContent">8</button>
             <button @click="inputContent">9</button>
@@ -91,7 +91,9 @@
                 height: 64px;
                 float: left;
                 background: transparent;
-                border: none;
+                border-radius: 10px;
+                border: 4px solid #f1f1f1;
+                font-size: 20px;
 
                 &.ok {
                     height: 64*2px;
@@ -105,7 +107,7 @@
                 $bg: #F2F2F2;
 
                 &:nth-child(1) {
-                    background: $bg;
+                    background: darken($bg, 4%);
                 }
 
                 &:nth-child(2), &:nth-child(5) {
