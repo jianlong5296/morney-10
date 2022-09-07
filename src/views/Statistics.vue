@@ -36,6 +36,8 @@
     import dayjs from 'dayjs';
     import clone from '@/lib/clone';
     import Chart from '@/components/Chart.vue';
+    import _ from 'lodash';
+    import day from 'dayjs';
 
     @Component({
         components: {Chart, Tabs},
@@ -66,7 +68,33 @@
             }
         }
 
+        get y(){
+            const today = new Date();
+            const array = [];
+
+            for (let i = 0; i <= 29; i++) {
+                const date = day(today).subtract(i, 'day').format('YYYY-MM-DD');
+                const found = _.find(this.recordList, {createdAt: date});
+                array.push({
+                    date: date, value: found ? found.amount : 0
+                });
+            }
+            //生成的图标按时间排序
+            array.sort((a, b) => {
+                if (a.date > b.date) {
+                    return 1;
+                } else if (a.date === b.date) {
+                    return;
+                } else {
+                    return -1;
+                }
+            });
+            return array;
+        }
+
         get x() {
+            const keys = this.y.map(item => item.date);
+            const values = this.y.map(item => item.value);
             return {
                 grid: {          //控制echarts图像的边距
                     left: 0,
@@ -74,11 +102,7 @@
                 },
                 xAxis: {
                     type: 'category',
-                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-                        '11', '12', '13', '14', '15', '16', '17',
-                        '18', '19', '20', '21', '22', '23', '24',
-                        '25', '26', '27', '28', '29', '30'
-                    ],
+                    data: keys,
                     axisTick: {alignWithLabel: true},  //设置横轴刻度线与数据展示对齐
                     axisLine: {lineStyle: {color: '#666'}}
                 },
@@ -88,22 +112,17 @@
                 },
                 series: [
                     {
-                        symbol:'circle',     //设置标签点的样式
+                        symbol: 'circle',     //设置标签点的样式
                         symbolSize: 10,     //设置标签点的大小
                         itemStyle: {color: '#666'},
-                        data: [
-                            150, 230, 224, 218, 135, 147, 260,
-                            150, 230, 224, 218, 135, 147, 260,
-                            150, 230, 224, 218, 135, 147, 260,
-                            150, 230, 224, 218, 135, 147, 260, 1, 2
-                        ],
+                        data: values,
                         type: 'line'
                     }
                 ],
                 tooltip: {
                     show: true,
-                    position:'top',
-                    formatter:'{c}'    //提示框下缘有个尖
+                    position: 'top',
+                    formatter: '{c}'    //提示框下缘有个尖
                 }
             };
         }
@@ -121,7 +140,7 @@
                 return [];
             }
             type Result = { title: string, total?: number, items: RecordItem[] }[]
-            const result: Result = [{title: dayjs(recordList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
+            const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
             for (let i = 1; i < newList.length; i++) {
                 const current = newList[i];
                 const last = result[result.length - 1];
@@ -145,7 +164,7 @@
 
         type = '-';
         recordTypeList = recordTypeList;
-    };
+    }
 </script>
 <style scoped lang="scss">
     .noResult {

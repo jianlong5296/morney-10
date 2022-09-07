@@ -11,7 +11,6 @@
         @Prop() options: any;
 
         mounted() {
-            console.log(this.options);
             const chart = echarts.init(this.$refs.wrapper as HTMLDivElement)
             chart.setOption(this.options)
         }
