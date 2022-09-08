@@ -104,8 +104,14 @@
                     type: 'category',
                     data: keys,
                     axisTick: {alignWithLabel: true},  //设置横轴刻度线与数据展示对齐
-                    axisLine: {lineStyle: {color: '#666'}}
+                    axisLine: {lineStyle: {color: '#666'}},
+                    axisLabel:{
+                        formatter: function (value:string, index:number) {
+                            return value.substr(5);
+                        }
+                    }
                 },
+
                 yAxis: {
                     type: 'value',
                     show: false,
